@@ -1,6 +1,6 @@
-echo "node_modules/
+node_modules/
 dist/
 build/
 venv/
 __pycache__/
-.env" > .gitignorenode_modules/
+.env
