@@ -1,6 +1,5 @@
-// ===============================
+
 // GET HTML ELEMENTS
-// ===============================
 
 const taskModal = document.getElementById("taskModal");
 
@@ -41,7 +40,6 @@ const taskDuration = document.getElementById("taskDuration");
 
 const taskContainer = document.getElementById("taskContainer");
 
-
 // Search and filters
 
 const searchInput = document.getElementById("searchInput");
@@ -55,7 +53,6 @@ const statusFilter = document.getElementById("statusFilter");
 const categoryFilter = document.getElementById("categoryFilter");
 
 const sortSelect = document.getElementById("sortSelect");
-
 
 // Statistics
 
@@ -75,10 +72,7 @@ const progressPercent = document.getElementById("progressPercent");
 
 const progressText = document.getElementById("progressText");
 
-
-// ===============================
 // TASK ARRAY
-// ===============================
 
 // Get tasks from localStorage
 
@@ -90,10 +84,7 @@ let tasks = JSON.parse(localStorage.getItem("studyTasks")) || [];
 
 let editingTaskId = null;
 
-
-// ===============================
 // OPEN MODAL
-// ===============================
 
 clearCompletedButton.addEventListener("click", function () {
 
@@ -114,10 +105,7 @@ addTaskButton.addEventListener("click", function () {
 
 });
 
-
-// ===============================
 // CLOSE MODAL
-// ===============================
 
 closeModal.addEventListener("click", closeTaskModal);
 
@@ -134,17 +122,13 @@ function closeTaskModal() {
 
 }
 
-
-// ===============================
 // ADD / EDIT TASK
-// ===============================
 
 taskForm.addEventListener("submit", function (event) {
 
     // Prevent page refresh
 
     event.preventDefault();
-
 
     // Create task object
 
@@ -169,7 +153,6 @@ taskForm.addEventListener("submit", function (event) {
         duration: taskDuration.value
 
     };
-
 
     // Check if we are editing
 
@@ -233,10 +216,7 @@ taskForm.addEventListener("submit", function (event) {
 
 });
 
-
-// ===============================
 // SAVE TASKS
-// ===============================
 
 function saveTasks() {
 
@@ -247,10 +227,7 @@ function saveTasks() {
 
 }
 
-
-// ===============================
 // DISPLAY TASKS
-// ===============================
 
 function displayTasks() {
 
@@ -259,10 +236,7 @@ function displayTasks() {
 
     let filteredTasks = [...tasks];
 
-
-    // ===========================
     // SEARCH
-    // ===========================
 
     const searchValue =
         searchInput.value.toLowerCase().trim();
@@ -290,10 +264,7 @@ function displayTasks() {
 
     }
 
-
-    // ===========================
     // SUBJECT FILTER
-    // ===========================
 
     if (subjectFilter.value !== "all") {
 
@@ -305,10 +276,7 @@ function displayTasks() {
 
     }
 
-
-    // ===========================
     // PRIORITY FILTER
-    // ===========================
 
     if (priorityFilter.value !== "all") {
 
@@ -320,10 +288,7 @@ function displayTasks() {
 
     }
 
-
-    // ===========================
     // STATUS FILTER
-    // ===========================
 
     if (statusFilter.value !== "all") {
 
@@ -335,10 +300,7 @@ function displayTasks() {
 
     }
 
-
-    // ===========================
     // CATEGORY FILTER
-    // ===========================
 
     if (categoryFilter.value !== "all") {
 
@@ -350,10 +312,7 @@ function displayTasks() {
 
     }
 
-
-    // ===========================
     // SORT
-    // ===========================
 
     if (sortSelect.value === "newest") {
 
@@ -413,10 +372,7 @@ function displayTasks() {
 
     }
 
-
-    // ===========================
     // NO TASKS
-    // ===========================
 
     if (filteredTasks.length === 0) {
 
@@ -444,10 +400,7 @@ function displayTasks() {
 
     }
 
-
-    // ===========================
     // CREATE SECTIONS
-    // ===========================
 
     const today = new Date();
 
@@ -519,10 +472,7 @@ function displayTasks() {
 
     });
 
-
-    // ===========================
     // DISPLAY EACH SECTION
-    // ===========================
 
     addSection(
         "⚠️ Overdue",
@@ -555,10 +505,7 @@ function displayTasks() {
 
 }
 
-
-// ===============================
 // ADD SECTION
-// ===============================
 
 function addSection(title, sectionTasks) {
 
@@ -604,10 +551,7 @@ function addSection(title, sectionTasks) {
 
 }
 
-
-// ===============================
 // CREATE TASK CARD
-// ===============================
 
 function createTaskCard(task) {
 
@@ -762,10 +706,7 @@ function createTaskCard(task) {
 
     `;
 
-
-    // ===========================
     // CHECKBOX
-    // ===========================
 
     const checkbox =
         card.querySelector(".task-checkbox");
@@ -780,10 +721,7 @@ function createTaskCard(task) {
         }
     );
 
-
-    // ===========================
     // EDIT BUTTON
-    // ===========================
 
     card.querySelector(".edit-button")
         .addEventListener(
@@ -795,10 +733,7 @@ function createTaskCard(task) {
             }
         );
 
-
-    // ===========================
     // DELETE BUTTON
-    // ===========================
 
     card.querySelector(".delete-button")
         .addEventListener(
@@ -815,10 +750,7 @@ function createTaskCard(task) {
 
 }
 
-
-// ===============================
 // EDIT TASK
-// ===============================
 
 function editTask(id) {
 
@@ -884,10 +816,7 @@ function editTask(id) {
 
 }
 
-
-// ===============================
 // DELETE TASK
-// ===============================
 
 function deleteTask(id) {
 
@@ -919,10 +848,7 @@ function deleteTask(id) {
 
 }
 
-
-// ===============================
 // CLEAR COMPLETED TASKS
-// ===============================
 
 function clearCompletedTasks() {
 
@@ -971,10 +897,7 @@ function clearCompletedTasks() {
 
 }
 
-
-// ===============================
 // COMPLETE TASK
-// ===============================
 
 function toggleComplete(id) {
 
@@ -1010,10 +933,7 @@ function toggleComplete(id) {
 
 }
 
-
-// ===============================
 // FORMAT DATE
-// ===============================
 
 function formatDate(dateString) {
 
@@ -1032,10 +952,7 @@ function formatDate(dateString) {
 
 }
 
-
-// ===============================
 // UPDATE STATISTICS
-// ===============================
 
 function updateStatistics() {
 
@@ -1148,10 +1065,7 @@ function updateStatistics() {
 
 }
 
-
-// ===============================
 // SEARCH EVENTS
-// ===============================
 
 searchInput.addEventListener(
     "input",
@@ -1188,10 +1102,7 @@ sortSelect.addEventListener(
     displayTasks
 );
 
-
-// ===============================
 // DARK MODE
-// ===============================
 
 const themeButton =
     document.getElementById(
@@ -1229,10 +1140,7 @@ themeButton.addEventListener(
     }
 );
 
-
-// ===============================
 // NOTIFICATION & PROFILE DROPDOWNS
-// ===============================
 
 const notifButton =
     document.getElementById("notifButton");
@@ -1305,10 +1213,7 @@ document.addEventListener(
     }
 );
 
-
-// ===============================
 // INITIAL LOAD
-// ===============================
 
 displayTasks();
 

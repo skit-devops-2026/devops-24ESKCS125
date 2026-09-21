@@ -1,8 +1,12 @@
 pipeline {
-
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                echo 'Code checked out from GitHub'
+            }
+        }
 
         stage('Build') {
             steps {
@@ -40,7 +44,6 @@ pipeline {
         success {
             echo 'SUCCESS: all stages passed and the Study Planner project was packaged.'
         }
-
         failure {
             echo 'FAILURE: one stage failed. Open the red stage to see why.'
         }

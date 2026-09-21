@@ -1,0 +1,27 @@
+{
+  "name": "study_plannar",
+  "version": "1.0.0",
+  "description": "A task/study planning web application built as part of the FSD Lab project.",
+  "main": "Notes.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skit-devops-2026/devops-24ESKCS125.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/skit-devops-2026/devops-24ESKCS125/issues"
+  },
+  "homepage": "https://github.com/skit-devops-2026/devops-24ESKCS125#readme",
+  "devDependencies": {
+    "jest": "^30.5.1"
+  }
+}
