@@ -20,6 +20,34 @@
 
 <body>
 
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            📚 Study Planner
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">🏠 Dashboard</a>
+            <a href="#">📚 Subjects</a>
+            <a href="task.html" class="active">✅ Task Planner</a>
+            <a href="#">📅 Calendar</a>
+            <a href="#">📝 Notes</a>
+            <a href="exam-tracker.html">📝 Exam Tracker</a>
+            <a href="#">⏱️ Focus Timer</a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="#">⚙️ Settings</a>
+            <a href="landing.html">🚪 Logout</a>
+        </div>
+
+    </aside>
+
+
     <!-- ================= MAIN CONTENT ================= -->
 
     <main class="main-content">
@@ -31,10 +59,6 @@
 
             <div class="topbar-left">
 
-                <div class="logo">
-                    📚 StudyPlanner
-                </div>
-
                 <div class="page-title">
 
                     <h1>Task Planner</h1>
@@ -42,79 +66,6 @@
                     <p>
                         Organize your study tasks and stay productive.
                     </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="top-icons">
-
-                <button id="themeButton" title="Toggle theme">
-                    🌙
-                </button>
-
-                <div class="icon-dropdown">
-
-                    <button id="notifButton" title="Notifications">
-                        🔔
-                        <span class="notif-dot"></span>
-                    </button>
-
-                    <div id="notifMenu" class="dropdown-menu hidden">
-
-                        <div class="dropdown-header">
-                            Notifications
-                        </div>
-
-                        <div class="dropdown-item">
-                            📌 "Complete DSA Arrays" is due tomorrow
-                        </div>
-
-                        <div class="dropdown-item">
-                            ✅ You completed 3 tasks today. Great job!
-                        </div>
-
-                        <div class="dropdown-item">
-                            ⚠️ You have overdue tasks pending
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="icon-dropdown">
-
-                    <button id="profileButton" class="profile-btn" title="Profile">
-                        👤
-                    </button>
-
-                    <div id="profileMenu" class="dropdown-menu hidden">
-
-                        <div class="dropdown-header profile-header">
-
-                            <div class="profile-avatar">👤</div>
-
-                            <div>
-                                <strong>Garima</strong>
-                                <p>garima@studyplanner.com</p>
-                            </div>
-
-                        </div>
-
-                        <a href="#" class="dropdown-item">
-                            👤 View Profile
-                        </a>
-
-                        <a href="#" class="dropdown-item">
-                            ⚙️ Settings
-                        </a>
-
-                        <a href="landing.html" class="dropdown-item logout-item">
-                            🚪 Logout
-                        </a>
-
-                    </div>
 
                 </div>
 
@@ -151,13 +102,6 @@
                     class="add-task-button"
                 >
                     + Add New Task
-                </button>
-
-                <button
-                    id="clearCompletedButton"
-                    class="clear-completed-button"
-                >
-                    🧹 Clear Completed
                 </button>
 
             </div>

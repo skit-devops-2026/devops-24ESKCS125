@@ -695,67 +695,15 @@ examModal.addEventListener("click", function (e) {
 
 
 // -----------------------------------------------
-// STEP 16: Dark / Light theme toggle
+// STEP 16: Dark / Light theme
+// (No toggle button on this page - dark mode is
+// controlled from the Dashboard. We just check here
+// if dark mode was turned on there, and apply it.)
 // -----------------------------------------------
 
-const themeButton = document.getElementById("themeButton");
-
-// Check if dark mode was saved before, and apply it
 if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark");
-    themeButton.textContent = "☀️";
 }
-
-themeButton.addEventListener("click", function () {
-
-    document.body.classList.toggle("dark");
-
-    if (document.body.classList.contains("dark")) {
-        localStorage.setItem("theme", "dark");
-        themeButton.textContent = "☀️";
-    } else {
-        localStorage.setItem("theme", "light");
-        themeButton.textContent = "🌙";
-    }
-
-});
-
-
-// -----------------------------------------------
-// STEP 17: Notification and profile dropdowns
-// -----------------------------------------------
-
-const notifButton = document.getElementById("notifButton");
-const notifMenu = document.getElementById("notifMenu");
-const profileButton = document.getElementById("profileButton");
-const profileMenu = document.getElementById("profileMenu");
-
-function closeAllDropdowns() {
-    notifMenu.classList.add("hidden");
-    profileMenu.classList.add("hidden");
-}
-
-notifButton.addEventListener("click", function (e) {
-    e.stopPropagation();
-    const willOpen = notifMenu.classList.contains("hidden");
-    closeAllDropdowns();
-    if (willOpen) {
-        notifMenu.classList.remove("hidden");
-    }
-});
-
-profileButton.addEventListener("click", function (e) {
-    e.stopPropagation();
-    const willOpen = profileMenu.classList.contains("hidden");
-    closeAllDropdowns();
-    if (willOpen) {
-        profileMenu.classList.remove("hidden");
-    }
-});
-
-document.addEventListener("click", function () {
-    closeAllDropdowns();
-});
 
 
 // -----------------------------------------------
