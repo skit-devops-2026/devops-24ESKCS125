@@ -17,3 +17,10 @@ services:
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     restart: unless-stopped
+   
+  blackbox-exporter:
+    image: prom/blackbox-exporter:latest
+    container_name: study-planner-blackbox
+    ports:
+      - "9115:9115"
+    restart: unless-stopped
