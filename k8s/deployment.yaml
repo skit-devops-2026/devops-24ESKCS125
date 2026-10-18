@@ -1,0 +1,21 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: study-planner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: study-planner
+  template:
+    metadata:
+      labels:
+        app: study-planner
+    spec:
+      containers:
+        - name: study-planner
+          image: garimaaa/study-planner:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
