@@ -26,6 +26,7 @@ make run
 \`\`\`
 
 ## Live URL
+[Study Planner Live App](https://study-planner-i8s5.onrender.com)
 
 ## Health endpoint
 
