@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Thu, 22 Oct 2026 13:50:00 GMT
+Content-Type: text/plain
+Transfer-Encoding: chunked
+Connection: keep-alive
+Server: cloudflare
+x-render-origin-server: nginx/alpine
+cf-cache-status: DYNAMIC
+
+Study Planner is healthy

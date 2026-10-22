@@ -24,3 +24,12 @@ services:
     ports:
       - "9115:9115"
     restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: study-planner-grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    restart: unless-stopped
