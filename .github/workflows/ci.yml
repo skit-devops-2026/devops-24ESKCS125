@@ -70,9 +70,9 @@ jobs:
         with:
           context: .
           push: true
-         tags: |
-              ghcr.io/skit-devops-2026/devops-24eskcs125:${{ github.sha }}
-              ghcr.io/skit-devops-2026/devops-24eskcs125:latest
+          tags: |
+            ghcr.io/skit-devops-2026/devops-24eskcs125:${{ github.sha }}
+            ghcr.io/skit-devops-2026/devops-24eskcs125:latest
 
   # ---------------------------------------------------------------------------
   # M5 — Deployment. Add a deploy job here.
