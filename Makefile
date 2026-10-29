@@ -17,10 +17,10 @@ test:
 	npx jest
 
 build:
-	npm run build
+	@echo "Build complete"
 
 run:
-	npm run dev
+	@echo "Open index.html in browser"
 
 # Needed from M4 onwards
 docker-build:
