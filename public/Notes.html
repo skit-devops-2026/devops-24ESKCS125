@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Study Planner - Notes</title>
+
+    <link rel="stylesheet"
+          href="css/Notes.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================================= -->
+    <!-- SIDEBAR -->
+    <!-- ================================================= -->
+
+    <!-- <div class="sidebar">
+
+        <h2>📚 Study Planner</h2>
+
+
+        <ul class="menu">
+
+            <li>
+                <a href="dashboard.html">
+                    🏠 Dashboard
+                </a>
+            </li>
+
+
+            <li>
+                <a href="subjects.html">
+                    📚 Subjects
+                </a>
+            </li>
+
+
+            <li>
+                <a href="task.html">
+                    ✅ Task Planner
+                </a>
+            </li>
+
+
+            <li>
+                <a href="calendar.html">
+                    📅 Calendar
+                </a>
+            </li>
+
+
+            <li class="active">
+                <a href="Notes.html">
+                    📝 Notes
+                </a>
+            </li>
+
+
+            <li>
+                <a href="exam-tracker.html">
+                    📝 Exam Tracker
+                </a>
+            </li>
+
+
+            <li>
+                <a href="focus.html">
+                    ⏱️ Focus Timer
+                </a>
+            </li>
+
+        </ul> -->
+
+
+        <!-- Bottom Menu -->
+
+        <!-- <ul class="bottom-menu">
+
+            <li>
+                <a href="settings.html">
+                    ⚙️ Settings
+                </a>
+            </li>
+
+
+            <li>
+                <a href="landing.html">
+                    🚪 Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </div> -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        📚 Study Planner
+    </div>
+
+
+    <div class="menu">
+
+        <a href="dashboard.html">
+            🏠 Dashboard
+        </a>
+
+        <a href="subjects.html">
+            📚 Subjects
+        </a>
+
+        <a href="task.html">
+            ✅ Task Planner
+        </a>
+
+        <a href="calendar.html">
+            📅 Calendar
+        </a>
+
+        <a href="Notes.html" class="active">
+            📝 Notes
+        </a>
+
+        <a href="exam-tracker.html">
+            📝 Exam Tracker
+        </a>
+
+        <a href="focus.html">
+            ⏱️ Focus Timer
+        </a>
+
+    </div>
+
+
+    <div class="bottom-menu">
+
+        <a href="settings.html">
+            ⚙️ Settings
+        </a>
+
+        <a href="landing.html">
+            🚪 Logout
+        </a>
+
+    </div>
+
+</div>
+
+    <!-- ================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ================================================= -->
+
+    <div class="main">
+
+
+        <!-- ================= HEADER ================= -->
+
+        <div class="header">
+
+            <div>
+
+                <h1>
+                    My Notes
+                </h1>
+
+                <p>
+                    Create and manage your study notes
+                </p>
+
+            </div>
+
+
+            <button
+                class="add-note-button"
+                onclick="openNotePopup()">
+
+                + Add Note
+
+            </button>
+
+        </div>
+
+
+
+        <!-- ================================================= -->
+        <!-- STATISTICS -->
+        <!-- ================================================= -->
+
+        <div class="stats">
+
+
+            <!-- Total Notes -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <h3 id="totalNotes">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Notes
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PDF -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h3 id="pdfNotes">
+                        0
+                    </h3>
+
+                    <p>
+                        PDF Files
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- DOCX -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📘
+                </div>
+
+                <div>
+
+                    <h3 id="docxNotes">
+                        0
+                    </h3>
+
+                    <p>
+                        DOCX Files
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Subjects -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <h3 id="totalSubjects">
+                        0
+                    </h3>
+
+                    <p>
+                        Subjects
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================================================= -->
+        <!-- SEARCH AND FILTER -->
+        <!-- ================================================= -->
+
+        <div class="search-area">
+
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="🔍 Search notes..."
+                onkeyup="displayNotes()"
+            >
+
+
+            <select
+                id="subjectFilter"
+                onchange="displayNotes()">
+
+                <option value="all">
+                    All Subjects
+                </option>
+
+            </select>
+
+
+            <select
+                id="typeFilter"
+                onchange="displayNotes()">
+
+                <option value="all">
+                    All Types
+                </option>
+
+                <option value="text">
+                    📝 Written Notes
+                </option>
+
+                <option value="pdf">
+                    📄 PDF
+                </option>
+
+                <option value="docx">
+                    📘 DOCX
+                </option>
+
+            </select>
+
+
+            <select
+                id="sortFilter"
+                onchange="displayNotes()">
+
+                <option value="newest">
+                    Newest
+                </option>
+
+                <option value="oldest">
+                    Oldest
+                </option>
+
+                <option value="name">
+                    Name
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- ================================================= -->
+        <!-- FILTER BUTTONS -->
+        <!-- ================================================= -->
+
+        <div class="filter-buttons">
+
+
+            <button
+                class="filter-button active"
+                onclick="showFilter('all', this)">
+
+                All
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="showFilter('text', this)">
+
+                📝 Notes
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="showFilter('pdf', this)">
+
+                📄 PDF
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="showFilter('docx', this)">
+
+                📘 DOCX
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="showFilter('pinned', this)">
+
+                📌 Pinned
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="showFilter('favorite', this)">
+
+                ⭐ Favorites
+
+            </button>
+
+        </div>
+
+
+
+        <!-- ================================================= -->
+        <!-- NOTES CONTAINER -->
+        <!-- ================================================= -->
+
+        <div
+            id="notesContainer"
+            class="notes-container">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- ADD NOTE POPUP -->
+    <!-- ================================================= -->
+
+    <div
+        id="notePopup"
+        class="popup">
+
+
+        <div class="popup-box">
+
+
+            <!-- Popup Header -->
+
+            <div class="popup-header">
+
+                <h2>
+                    Add New Note
+                </h2>
+
+
+                <button
+                    onclick="closeNotePopup()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+
+            <!-- Note Type -->
+
+            <div class="note-type-buttons">
+
+
+                <button
+                    id="writeButton"
+                    class="type-button active"
+                    onclick="showWriteNote()">
+
+                    ✍️ Write Note
+
+                </button>
+
+
+                <button
+                    id="uploadButton"
+                    class="type-button"
+                    onclick="showUploadNote()">
+
+                    📎 Upload File
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================================================= -->
+            <!-- WRITE NOTE -->
+            <!-- ================================================= -->
+
+            <div id="writeNoteSection">
+
+
+                <label>
+                    Note Title
+                </label>
+
+
+                <input
+                    type="text"
+                    id="noteTitle"
+                    placeholder="Example: DBMS Normalization"
+                >
+
+
+
+                <label>
+                    Subject
+                </label>
+
+
+                <div class="subject-row">
+
+
+                    <select id="noteSubject">
+
+                        <option value="">
+                            No Subject Added
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        type="button"
+                        class="add-subject-small"
+                        onclick="openSubjectPopup()">
+
+                        + Add Subject
+
+                    </button>
+
+                </div>
+
+
+
+                <label>
+                    Tags
+                </label>
+
+
+                <input
+                    type="text"
+                    id="noteTags"
+                    placeholder="Example: exam, revision, important"
+                >
+
+
+
+                <label>
+                    Write Your Note
+                </label>
+
+
+                <textarea
+                    id="noteContent"
+                    placeholder="Write your study note here..."
+                ></textarea>
+
+
+
+                <button
+                    class="save-button"
+                    onclick="saveTextNote()">
+
+                    Save Note
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================================================= -->
+            <!-- UPLOAD FILE -->
+            <!-- ================================================= -->
+
+            <div
+                id="uploadFileSection"
+                class="hidden">
+
+
+                <label>
+                    Select Subject
+                </label>
+
+
+                <select id="fileSubject">
+
+                    <option value="">
+                        No Subject Added
+                    </option>
+
+                </select>
+
+
+
+                <label>
+                    Select PDF or DOCX
+                </label>
+
+
+
+                <div class="upload-area">
+
+
+                    <div class="upload-icon">
+                        📎
+                    </div>
+
+
+                    <p>
+                        Choose your study file
+                    </p>
+
+
+                    <span>
+                        PDF or DOCX only
+                    </span>
+
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept=".pdf,.docx"
+                        onchange="showSelectedFile()"
+                    >
+
+                </div>
+
+
+
+                <div
+                    id="selectedFile"
+                    class="selected-file">
+
+                </div>
+
+
+
+                <button
+                    class="save-button"
+                    onclick="uploadFile()">
+
+                    Upload File
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- ADD SUBJECT POPUP -->
+    <!-- ================================================= -->
+
+    <div
+        id="subjectPopup"
+        class="popup">
+
+
+        <div class="popup-box small-box">
+
+
+            <div class="popup-header">
+
+                <h2>
+                    Add Subject
+                </h2>
+
+
+                <button
+                    onclick="closeSubjectPopup()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+
+            <label>
+                Subject Name
+            </label>
+
+
+            <input
+                type="text"
+                id="subjectName"
+                placeholder="Example: DBMS"
+            >
+
+
+
+            <button
+                class="save-button"
+                onclick="addSubject()">
+
+                Add Subject
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================================= -->
+
+    <script src="storage-isolation.js"></script>
+    <script src="Notes.js"></script>
+    <script src="mongo-sync.js"></script>
+
+
+</body>
+
+</html>

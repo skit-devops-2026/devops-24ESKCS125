@@ -21,41 +21,41 @@ export default function Dashboard() {
     <div className="dashboard-page-root">
       {/* ================= SIDEBAR ================= */}
       <div className="sidebar">
-        <Link to="/dashboard" className="logo" style={{ textDecoration: 'none', display: 'block', color: 'white' }}>
+        <a href="/dashboard.html" className="logo" style={{ textDecoration: 'none', display: 'block', color: 'white' }}>
           📚 Study Planner
-        </Link>
+        </a>
 
         <div className="menu">
-          <Link to="/dashboard" className="active">
+          <a href="/dashboard.html" className="active">
             🏠 Dashboard
-          </Link>
-          <Link to="/subjects">
+          </a>
+          <a href="/subjects.html">
             📚 Subjects
-          </Link>
-          <Link to="/tasks">
+          </a>
+          <a href="/task.html">
             ✅ Task Planner
-          </Link>
-          <Link to="/calendar">
+          </a>
+          <a href="/calendar.html">
             📅 Calendar
-          </Link>
-          <Link to="/notes">
+          </a>
+          <a href="/Notes.html">
             📝 Notes
-          </Link>
-          <Link to="/exams">
+          </a>
+          <a href="/exam-tracker.html">
             📝 Exam Tracker
-          </Link>
-          <Link to="/focus">
+          </a>
+          <a href="/focus.html">
             ⏱️ Focus Timer
-          </Link>
+          </a>
         </div>
 
         <div className="bottom-menu">
-          <Link to="/settings">
+          <a href="/settings.html">
             ⚙️ Settings
-          </Link>
-          <Link to="/">
+          </a>
+          <a href="/">
             🚪 Logout
-          </Link>
+          </a>
         </div>
       </div>
 
@@ -70,10 +70,10 @@ export default function Dashboard() {
 
           <div className="user-section">
             <span className="notification" title="Notifications">🔔</span>
-            <Link to="/settings" className="user" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <a href="/settings.html" className="user" style={{ textDecoration: 'none', color: 'inherit' }}>
               👤
               <span id="userNameDisplay">{user}</span>
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -104,7 +104,7 @@ export default function Dashboard() {
 
             <div className="progress">
               <div
-                className="progress-bar task-bar"
+                class="progress-bar task-bar"
                 id="taskProgress"
                 style={{ width: '60%' }}
               ></div>
@@ -112,16 +112,16 @@ export default function Dashboard() {
 
             <p id="remainingTasks">4 tasks remaining</p>
 
-            <Link to="/tasks" className="view-link">
+            <a href="/task.html" className="view-link">
               View Tasks →
-            </Link>
+            </a>
           </div>
 
           {/* Subject Progress */}
           <div className="dashboard-card" id="subjectProgressCard">
             <div className="card-title">
               <h2>📚 Subject Progress</h2>
-              <Link to="/subjects">View All</Link>
+              <a href="/subjects.html">View All</a>
             </div>
 
             <div id="subjectProgressList">
@@ -164,7 +164,7 @@ export default function Dashboard() {
           <div className="dashboard-card exam-card">
             <div className="card-title">
               <h2>📅 Upcoming Exam</h2>
-              <Link to="/exams">View All</Link>
+              <a href="/exam-tracker.html">View All</a>
             </div>
 
             <div id="upcomingExamContainer">
@@ -179,9 +179,9 @@ export default function Dashboard() {
                   <span>Days Left</span>
                 </div>
               </div>
-              <Link to="/exams" className="view-button">
+              <a href="/exam-tracker.html" className="view-button">
                 View Details
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -189,7 +189,7 @@ export default function Dashboard() {
           <div className="dashboard-card priority-card">
             <div className="card-title">
               <h2>🔥 High Priority Tasks</h2>
-              <Link to="/tasks">View All</Link>
+              <a href="/task.html">View All</a>
             </div>
 
             <div id="highPriorityContainer">
@@ -225,25 +225,25 @@ export default function Dashboard() {
           <h2>Quick Actions</h2>
 
           <div className="quick-actions">
-            <Link to="/tasks" className="quick-card">
+            <a href="/task.html?action=add" className="quick-card">
               <span>➕</span>
               <p>Add Task</p>
-            </Link>
+            </a>
 
-            <Link to="/notes" className="quick-card">
+            <a href="/Notes.html?action=new" className="quick-card">
               <span>📝</span>
               <p>New Note</p>
-            </Link>
+            </a>
 
-            <Link to="/subjects" className="quick-card">
+            <a href="/subjects.html?action=add" className="quick-card">
               <span>📚</span>
               <p>Add Subject</p>
-            </Link>
+            </a>
 
-            <Link to="/focus" className="quick-card">
+            <a href="/focus.html" className="quick-card">
               <span>⏱️</span>
               <p>Start Focus</p>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

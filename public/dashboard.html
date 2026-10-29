@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Planner - Dashboard</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <div class="sidebar">
+
+        <a href="dashboard.html" class="logo" style="text-decoration:none; display:block; color:white;">
+            📚 Study Planner
+        </a>
+
+        <div class="menu">
+
+            <a href="dashboard.html" class="active">
+                🏠 Dashboard
+            </a>
+
+            <a href="subjects.html">
+                📚 Subjects
+            </a>
+
+            <a href="task.html">
+                ✅ Task Planner
+            </a>
+
+            <a href="calendar.html">
+                📅 Calendar
+            </a>
+
+            <a href="Notes.html">
+                📝 Notes
+            </a>
+
+            <a href="exam-tracker.html">
+                📝 Exam Tracker
+            </a>
+
+            <a href="focus.html">
+                ⏱️ Focus Timer
+            </a>
+
+        </div>
+
+        <div class="bottom-menu">
+
+            <a href="settings.html">
+                ⚙️ Settings
+            </a>
+
+            <a href="landing.html">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <div class="main-content">
+
+
+        <!-- Header -->
+
+        <div class="header">
+
+            <div>
+                <h1 id="greetingTitle">Good Morning! 👋</h1>
+                <p id="todayDate">Let's make today productive.</p>
+            </div>
+
+            <div class="user-section">
+
+                <span class="notification" title="Notifications">🔔</span>
+
+                <a href="settings.html" class="user" style="text-decoration:none; color:inherit;">
+                    👤
+                    <span id="userNameDisplay">Student</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= QUOTE ================= -->
+
+        <div class="quote-card">
+
+            <div class="quote-icon">
+                💡
+            </div>
+
+            <div>
+                <h2>Quote of the Day</h2>
+
+                <p id="dailyQuote">
+                    "Success is the sum of small efforts, repeated day in and day out."
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- ================= FIRST ROW ================= -->
+
+        <div class="card-row">
+
+
+            <!-- Today's Task Progress -->
+
+            <div class="dashboard-card task-progress-card">
+
+                <div class="card-title">
+
+                    <h2>📋 Today's Task Progress</h2>
+
+                    <span id="taskProgressPercent">0%</span>
+
+                </div>
+
+                <div class="task-number">
+
+                    <strong id="completedTasks">0</strong>
+
+                    <span id="totalTasksDisplay">/ 0 Tasks Completed</span>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar task-bar"
+                        id="taskProgress"
+                        style="width: 0%;">
+                    </div>
+
+                </div>
+
+                <p id="remainingTasks">
+                    0 tasks remaining
+                </p>
+
+                <a href="task.html" class="view-link">
+                    View Tasks →
+                </a>
+
+            </div>
+
+
+            <!-- Subject Progress -->
+
+            <div class="dashboard-card" id="subjectProgressCard">
+
+                <div class="card-title">
+
+                    <h2>📚 Subject Progress</h2>
+
+                    <a href="subjects.html">
+                        View All
+                    </a>
+
+                </div>
+
+                <div id="subjectProgressList">
+                    <!-- Populated dynamically by dashboard.js -->
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= SECOND ROW ================= -->
+
+        <div class="card-row">
+
+
+            <!-- Upcoming Exam -->
+
+            <div class="dashboard-card exam-card">
+
+                <div class="card-title">
+
+                    <h2>📅 Upcoming Exam</h2>
+
+                    <a href="exam-tracker.html">
+                        View All
+                    </a>
+
+                </div>
+
+                <div id="upcomingExamContainer">
+                    <!-- Populated dynamically by dashboard.js -->
+                </div>
+
+            </div>
+
+
+            <!-- High Priority Tasks -->
+
+            <div class="dashboard-card priority-card">
+
+                <div class="card-title">
+
+                    <h2>🔥 High Priority Tasks</h2>
+
+                    <a href="task.html">
+                        View All
+                    </a>
+
+                </div>
+
+                <div id="highPriorityContainer">
+                    <!-- Populated dynamically by dashboard.js -->
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= QUICK ACTIONS ================= -->
+
+        <div class="quick-section">
+
+            <h2>Quick Actions</h2>
+
+            <div class="quick-actions">
+
+                <a href="task.html?action=add" class="quick-card">
+                    <span>➕</span>
+                    <p>Add Task</p>
+                </a>
+
+                <a href="Notes.html?action=new" class="quick-card">
+                    <span>📝</span>
+                    <p>New Note</p>
+                </a>
+
+                <a href="subjects.html?action=add" class="quick-card">
+                    <span>📚</span>
+                    <p>Add Subject</p>
+                </a>
+
+                <a href="focus.html" class="quick-card">
+                    <span>⏱️</span>
+                    <p>Start Focus</p>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script src="storage-isolation.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="mongo-sync.js"></script>
+
+</body>
+
+</html>
