@@ -12,7 +12,7 @@ export default function Landing() {
 
     <nav>
 
-        <div className="logo">
+        <div className="logo" style={{ color: '#4f46e5', fontSize: '24px', fontWeight: 'bold' }}>
             📚 StudyPlanner
         </div>
 

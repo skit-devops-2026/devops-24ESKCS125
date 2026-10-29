@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/Layout';
 
 import Landing from './pages/Landing';
@@ -29,14 +28,8 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
 
-          {/* Protected Application Routes */}
-          <Route
-            element={
-              <ProtectedRoute>
-                <Layout />
-              </ProtectedRoute>
-            }
-          >
+          {/* Feature Routes */}
+          <Route element={<Layout />}>
             <Route path="/tasks" element={<Tasks />} />
             <Route path="/subjects" element={<Subjects />} />
             <Route path="/subjects/:id" element={<SubjectDetails />} />
