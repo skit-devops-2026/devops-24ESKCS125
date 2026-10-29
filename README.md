@@ -16,9 +16,9 @@ The project is developed as a DevOps-enabled application with automated testing,
 
 ## Tech Stack
 
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Static / Web Server
-- **Database:** LocalStorage / Client-side
+- **Frontend:** React 19, Tailwind CSS, Vite (SPA)
+- **Backend:** Node.js, Express API
+- **Database:** MongoDB (Mongoose) & LocalStorage
 - **Web Server:** Nginx
 - **Containerization:** Docker, Docker Compose
 - **CI/CD:** GitHub Actions

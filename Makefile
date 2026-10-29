@@ -11,20 +11,20 @@
 .PHONY: install test build run docker-build docker-up
 
 install:
-	npm install
+	npm install --legacy-peer-deps
 
 test:
 	npx jest
 
 build:
-	@echo "no build step"
+	npm run build
 
 run:
-	@echo "TODO: start the app locally" && exit 1
+	npm run dev
 
 # Needed from M4 onwards
 docker-build:
-	@echo "TODO: docker build for frontend and backend" && exit 1
+	docker build -t study-planner .
 
 docker-up:
 	docker compose up --build
