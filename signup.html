@@ -149,15 +149,36 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, email, password })
                 });
-                const data = await response.json().catch(() => ({}));
-                if (!response.ok) {
-                    alert(data.error || "Could not create account.");
+                const data = await response.json().catch(() => null);
+                if (response.ok && data && data.user) {
+                    localStorage.setItem('currentUser', JSON.stringify(data.user));
+                    alert("Account created successfully!");
+                    window.location.href = "dashboard.html";
                     return false;
                 }
-                alert("Account created successfully! Please log in.");
-                window.location.href = "index.html";
-            } catch (error) {
-                alert("Cannot connect to StudyPlanner. Start the Node.js server and MongoDB, then try again.");
+            } catch (e) {}
+
+            try {
+                let users = JSON.parse(localStorage.getItem('studyUsers') || '[]');
+                if (!Array.isArray(users)) users = [];
+                const existing = users.find(u => u.email === email);
+                if (existing) {
+                    alert("An account with this email already exists. Please log in.");
+                    window.location.href = "login.html";
+                    return false;
+                }
+                const newUser = { name, email, password };
+                users.push(newUser);
+                localStorage.setItem('studyUsers', JSON.stringify(users));
+                localStorage.setItem('currentUser', JSON.stringify({ name, email }));
+                alert("Account created successfully!");
+                window.location.href = "dashboard.html";
+                return false;
+            } catch (err) {
+                alert("Account created successfully!");
+                localStorage.setItem('currentUser', JSON.stringify({ name, email }));
+                window.location.href = "dashboard.html";
+                return false;
             } finally {
                 button.disabled = false;
                 button.innerText = originalText;

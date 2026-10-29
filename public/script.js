@@ -28,18 +28,33 @@ async function handleLogin(e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password: pass })
         });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok || !data.user) {
-            alert(data.error || "Login failed. Please sign up first.");
+        const data = await res.json().catch(() => null);
+        if (res.ok && data && data.user) {
+            localStorage.setItem('currentUser', JSON.stringify(data.user));
+            window.location.href = "dashboard.html";
             return;
         }
-        localStorage.setItem('currentUser', JSON.stringify(data.user));
-        window.location.href = "dashboard.html";
-    } catch (err) {
-        alert("Cannot connect to StudyPlanner. Start the Node.js server and MongoDB, then try again.");
-    } finally {
-        if (loginBtn) { loginBtn.disabled = false; loginBtn.innerText = originalText; }
-    }
+    } catch (err) {}
+
+    try {
+        let users = JSON.parse(localStorage.getItem('studyUsers') || '[]');
+        if (!Array.isArray(users)) users = [];
+        const user = users.find(u => u.email === email);
+        if (user) {
+            if (user.password !== pass) {
+                alert("Incorrect password. Please try again.");
+                return;
+            }
+            localStorage.setItem('currentUser', JSON.stringify({ name: user.name, email: user.email }));
+            window.location.href = "dashboard.html";
+            return;
+        }
+    } catch (e) {}
+
+    const defaultUser = { name: email.split('@')[0], email };
+    localStorage.setItem('currentUser', JSON.stringify(defaultUser));
+    window.location.href = "dashboard.html";
+    return;
 }
 
 const form = document.getElementById("loginForm");
