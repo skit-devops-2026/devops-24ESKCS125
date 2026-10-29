@@ -1,7 +1,19 @@
+# Multi-stage Docker build for React Application
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install --legacy-peer-deps
+
+COPY . .
+RUN npm run build
+
+# Production runtime with Nginx
 FROM nginx:alpine
 
-COPY . /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY health /usr/share/nginx/html/health
 
 EXPOSE 80
 

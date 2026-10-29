@@ -1,101 +1,71 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError('');
-    setLoading(true);
-    try {
-      await login(email.trim(), password);
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.message || 'Invalid email or password. Please try again.');
-    } finally {
-      setLoading(false);
+    if (!email || !password) {
+      setError('Please fill in all fields');
+      return;
     }
+    const user = { name: email.split('@')[0], email };
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    navigate('/dashboard');
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
-      <div className="bg-white w-full max-w-[400px] p-8 rounded-2xl shadow-xl border border-slate-200/60">
-        <div className="text-center mb-6">
-          <Link to="/" className="inline-block text-3xl font-extrabold text-blue-600 hover:opacity-90">
-            📚 Study Planner
-          </Link>
-          <h2 className="text-xl font-bold text-slate-800 mt-3">Welcome Back! 👋</h2>
-          <p className="text-xs text-slate-500 mt-1">Please enter your credentials to log in.</p>
-        </div>
-
-        {error && (
-          <div className="mb-4 p-3 bg-rose-50 border border-rose-200 text-rose-600 text-xs font-semibold rounded-xl flex items-center gap-2">
-            <span>⚠️</span>
-            <span>{error}</span>
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-              Email Address
-            </label>
+    <div className="bg-blue-50 flex items-center justify-center min-h-screen">
+      <div className="bg-white w-[380px] p-8 rounded-2xl shadow-xl">
+        <Link to="/" className="block text-3xl font-bold text-center text-blue-600 hover:opacity-90">
+          📚 Study Planner
+        </Link>
+        {error && <div className="text-red-500 text-sm mt-3 text-center">{error}</div>}
+        <form className="mt-6" onSubmit={handleSubmit}>
+          <label className="block font-semibold text-gray-700 mb-2">Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+            required
+          />
+          <label className="block font-semibold text-gray-700 mb-2">Password</label>
+          <div className="relative">
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="student@example.com"
+              type={showPass ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
-              className="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
             />
+            <span
+              onClick={() => setShowPass(!showPass)}
+              className="absolute right-4 top-3 text-gray-500 cursor-pointer"
+            >
+              {showPass ? '🙈' : '👁️'}
+            </span>
           </div>
-
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-              Password
-            </label>
-            <div className="relative">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                required
-                className="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 pr-11 transition-all"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-2.5 text-slate-400 hover:text-slate-600 text-sm focus:outline-none"
-              >
-                <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-              </button>
-            </div>
-          </div>
-
           <button
             type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white font-bold py-3 rounded-xl shadow-lg shadow-blue-500/25 transition-all text-sm mt-2"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold mt-6 transition duration-300 cursor-pointer"
           >
-            {loading ? 'Logging in...' : 'Sign In'}
+            Login
           </button>
+          <p className="text-center text-gray-600 mt-5">
+            Don't have an account?{' '}
+            <Link to="/signup" className="text-blue-600 font-semibold hover:underline">
+              Sign Up
+            </Link>
+          </p>
         </form>
-
-        <div className="mt-6 text-center text-xs text-slate-500">
-          Don't have an account?{' '}
-          <Link to="/signup" className="text-blue-600 font-bold hover:underline">
-            Create account
-          </Link>
-        </div>
       </div>
     </div>
   );
