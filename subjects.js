@@ -412,3 +412,15 @@ window.addEventListener("storage", function(event) {
     }
 
 });
+
+
+// =========================================
+// DEEP LINKING
+// =========================================
+if (window.location.search.includes("action=add")) {
+    setTimeout(function () {
+        if (typeof openSubjectPopup === "function") {
+            openSubjectPopup();
+        }
+    }, 100);
+}

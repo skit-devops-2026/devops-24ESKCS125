@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Planner - Settings</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .settings-card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            border: 1px solid #edf0f7;
+        }
+
+        .settings-card h2 {
+            font-size: 18px;
+            color: #1e293b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .settings-card p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 13px;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #1e293b;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: #5865d8;
+        }
+
+        .btn-primary {
+            background: #5865d8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #4351c9;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .theme-toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .stat-badge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-badge {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat-badge strong {
+            display: block;
+            font-size: 20px;
+            color: #5865d8;
+        }
+
+        .stat-badge span {
+            font-size: 12px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <div class="sidebar">
+
+        <a href="dashboard.html" class="logo" style="text-decoration:none; display:block; color:white;">
+            📚 Study Planner
+        </a>
+
+        <div class="menu">
+
+            <a href="dashboard.html">
+                🏠 Dashboard
+            </a>
+
+            <a href="subjects.html">
+                📚 Subjects
+            </a>
+
+            <a href="task.html">
+                ✅ Task Planner
+            </a>
+
+            <a href="calendar.html">
+                📅 Calendar
+            </a>
+
+            <a href="Notes.html">
+                📝 Notes
+            </a>
+
+            <a href="exam-tracker.html">
+                📝 Exam Tracker
+            </a>
+
+            <a href="focus.html">
+                ⏱️ Focus Timer
+            </a>
+
+        </div>
+
+        <div class="bottom-menu">
+
+            <a href="settings.html" class="active">
+                ⚙️ Settings
+            </a>
+
+            <a href="landing.html">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <div class="main-content">
+
+        <!-- Header -->
+
+        <div class="header">
+
+            <div>
+                <h1>⚙️ Settings & Profile</h1>
+                <p>Manage your account settings, appearance, and study data.</p>
+            </div>
+
+            <div class="user-section">
+
+                <a href="dashboard.html" style="text-decoration:none; color:#5865d8; font-weight:600; font-size:14px;">
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Settings Cards -->
+
+        <div class="settings-grid">
+
+            <!-- Profile Settings -->
+            <div class="settings-card">
+                <h2>👤 Student Profile</h2>
+                <p>Personalize your name and account details.</p>
+
+                <form id="profileForm" onsubmit="saveProfile(event)">
+                    <div class="form-group">
+                        <label for="profileName">Your Name</label>
+                        <input type="text" id="profileName" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profileEmail">Email Address</label>
+                        <input type="email" id="profileEmail" placeholder="Enter your email" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        Save Profile
+                    </button>
+                </form>
+            </div>
+
+            <!-- Appearance & Theme -->
+            <div class="settings-card">
+                <h2>🎨 Appearance</h2>
+                <p>Customize the look and feel of your workspace.</p>
+
+                <div class="theme-toggle-row">
+                    <div>
+                        <strong style="display:block; font-size:14px; color:#1e293b;">Dark Mode</strong>
+                        <span style="font-size:12px; color:#64748b;">Easier on your eyes during night study</span>
+                    </div>
+                    <button type="button" id="themeToggleBtn" onclick="toggleTheme()" class="btn-primary" style="background:#1e293b;">
+                        Toggle Theme
+                    </button>
+                </div>
+
+                <div class="theme-toggle-row" style="border:none;">
+                    <div>
+                        <strong style="display:block; font-size:14px; color:#1e293b;">Account Status</strong>
+                        <span style="font-size:12px; color:#10b981; font-weight:600;">● Active & Synced</span>
+                    </div>
+                    <a href="landing.html" style="color:#ef4444; font-size:13px; font-weight:600; text-decoration:none;">
+                        Logout
+                    </a>
+                </div>
+            </div>
+
+            <!-- Data & Statistics Overview -->
+            <div class="settings-card" style="grid-column: 1 / -1;">
+                <h2>📊 Study Data Overview</h2>
+                <p>Review the data saved across all your tools.</p>
+
+                <div class="stat-badge-grid">
+                    <div class="stat-badge">
+                        <strong id="statTasks">0</strong>
+                        <span>Total Tasks</span>
+                    </div>
+                    <div class="stat-badge">
+                        <strong id="statSubjects">0</strong>
+                        <span>Total Subjects</span>
+                    </div>
+                    <div class="stat-badge">
+                        <strong id="statExams">0</strong>
+                        <span>Scheduled Exams</span>
+                    </div>
+                    <div class="stat-badge">
+                        <strong id="statNotes">0</strong>
+                        <span>Saved Notes</span>
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; padding-top:15px; border-top:1px solid #f1f5f9;">
+                    <div>
+                        <strong style="display:block; font-size:13px; color:#ef4444;">Clear Workspace Data</strong>
+                        <span style="font-size:12px; color:#94a3b8;">This will reset your local tasks, notes, and subjects</span>
+                    </div>
+                    <button type="button" onclick="clearAllData()" class="btn-danger">
+                        Reset All Data
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="storage-isolation.js"></script>
+    <script src="settings.js"></script>
+    <script src="mongo-sync.js"></script>
+
+</body>
+
+</html>

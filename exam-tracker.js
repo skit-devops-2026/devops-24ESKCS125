@@ -711,3 +711,35 @@ if (localStorage.getItem("theme") === "dark") {
 // -----------------------------------------------
 
 renderExams();
+
+
+// -----------------------------------------------
+// DYNAMIC SUBJECTS & DEEP LINKING
+// -----------------------------------------------
+
+function syncExamSubjects() {
+    const savedSubjects = JSON.parse(localStorage.getItem("studySubjects")) || [];
+    const allSubjects = new Set(savedSubjects);
+    if (typeof exams !== "undefined" && Array.isArray(exams)) {
+        exams.forEach(function (e) { if (e.subject) allSubjects.add(e.subject); });
+    }
+
+    const examSubjectEl = document.getElementById("examSubject");
+    if (examSubjectEl && allSubjects.size > 0) {
+        const currentSelected = examSubjectEl.value;
+        let optionsHtml = '<option value="">Select subject</option>';
+        allSubjects.forEach(function (sub) {
+            optionsHtml += '<option value="' + sub + '">' + sub + '</option>';
+        });
+        examSubjectEl.innerHTML = optionsHtml;
+        if (currentSelected) examSubjectEl.value = currentSelected;
+    }
+}
+
+syncExamSubjects();
+
+if (window.location.search.includes("action=add")) {
+    setTimeout(function () {
+        if (addExamButton) addExamButton.click();
+    }, 100);
+}

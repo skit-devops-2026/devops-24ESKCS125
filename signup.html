@@ -14,13 +14,13 @@
     <div class="bg-white w-[380px] p-3 rounded-2xl shadow-xl">
 
         <!-- Heading -->
-        <h1 class="text-3xl font-bold text-center text-blue-600">
+        <a href="landing.html" class="block text-3xl font-bold text-center text-blue-600 hover:opacity-90">
             📚 Study Planner
-        </h1>
+        </a>
         <p class="text-center text-gray-500 mt-2">
             Create Your Account
         </p>
-        <form class="mt-6" onsubmit="return validateForm()">
+        <form class="mt-6" onsubmit="event.preventDefault(); validateForm(); return false;">
             <!-- Full Name -->
             <label class="block font-semibold text-gray-700 mb-2">
                 Full Name
@@ -119,27 +119,50 @@
                 confirm.type="password";
             }
         }
-        function validateForm()
-        {
-            var name = document.getElementById("name").value;
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
-            var confirm = document.getElementById("confirm").value;
+        async function validateForm() {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim().toLowerCase();
+            const password = document.getElementById("password").value;
+            const confirm = document.getElementById("confirm").value;
 
-            if(name=="" || email=="" || password=="" || confirm=="")
-            {
+            if (!name || !email || !password || !confirm) {
                 alert("Please fill all fields.");
                 return false;
             }
-
-            if(password!=confirm)
-            {
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters.");
+                return false;
+            }
+            if (password !== confirm) {
                 alert("Password does not match.");
                 return false;
             }
 
-            alert("Account Created Successfully!");
-            return true;
+            const button = document.querySelector('button[type="submit"]');
+            const originalText = button.innerText;
+            button.disabled = true;
+            button.innerText = "Creating account...";
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok) {
+                    alert(data.error || "Could not create account.");
+                    return false;
+                }
+                alert("Account created successfully! Please log in.");
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("Cannot connect to StudyPlanner. Start the Node.js server and MongoDB, then try again.");
+            } finally {
+                button.disabled = false;
+                button.innerText = originalText;
+            }
+            return false;
         }
     </script>
 </body>

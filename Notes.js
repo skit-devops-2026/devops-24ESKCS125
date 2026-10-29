@@ -1364,3 +1364,15 @@ function updateStatistics() {
         .innerText = subjects.length;
 
 }
+
+
+// ==================================================
+// DEEP LINKING
+// ==================================================
+if (window.location.search.includes("action=new")) {
+    setTimeout(function () {
+        if (typeof openNotePopup === "function") {
+            openNotePopup();
+        }
+    }, 100);
+}

@@ -1148,3 +1148,50 @@ if (localStorage.getItem("theme") === "dark") {
 displayTasks();
 
 updateStatistics();
+
+
+// ===============================
+// DYNAMIC SUBJECTS & DEEP LINKING
+// ===============================
+
+function syncTaskSubjects() {
+    const savedSubjects = JSON.parse(localStorage.getItem("studySubjects")) || [];
+    const allSubjects = new Set(savedSubjects);
+    if (typeof tasks !== "undefined" && Array.isArray(tasks)) {
+        tasks.forEach(function (t) { if (t.subject) allSubjects.add(t.subject); });
+    }
+
+    if (allSubjects.size > 0) {
+        const taskSubjectEl = document.getElementById("taskSubject");
+        const subjectFilterEl = document.getElementById("subjectFilter");
+
+        if (taskSubjectEl) {
+            const currentSelected = taskSubjectEl.value;
+            let optionsHtml = '<option value="">Select Subject</option>';
+            allSubjects.forEach(function (sub) {
+                optionsHtml += '<option value="' + sub + '">' + sub + '</option>';
+            });
+            taskSubjectEl.innerHTML = optionsHtml;
+            if (currentSelected) taskSubjectEl.value = currentSelected;
+        }
+
+        if (subjectFilterEl) {
+            const currentFilter = subjectFilterEl.value;
+            let filterHtml = '<option value="all">All Subjects</option>';
+            allSubjects.forEach(function (sub) {
+                filterHtml += '<option value="' + sub + '">' + sub + '</option>';
+            });
+            subjectFilterEl.innerHTML = filterHtml;
+            if (currentFilter) subjectFilterEl.value = currentFilter;
+        }
+    }
+}
+
+syncTaskSubjects();
+
+if (window.location.search.includes("action=add")) {
+    setTimeout(function () {
+        const addBtn = document.getElementById("addTaskButton");
+        if (addBtn) addBtn.click();
+    }, 100);
+}

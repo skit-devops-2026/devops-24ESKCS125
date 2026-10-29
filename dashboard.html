@@ -16,9 +16,9 @@
 
     <div class="sidebar">
 
-        <div class="logo">
+        <a href="dashboard.html" class="logo" style="text-decoration:none; display:block; color:white;">
             📚 Study Planner
-        </div>
+        </a>
 
         <div class="menu">
 
@@ -77,18 +77,18 @@
         <div class="header">
 
             <div>
-                <h1>Good Morning! 👋</h1>
+                <h1 id="greetingTitle">Good Morning! 👋</h1>
                 <p id="todayDate">Let's make today productive.</p>
             </div>
 
             <div class="user-section">
 
-                <span class="notification">🔔</span>
+                <span class="notification" title="Notifications">🔔</span>
 
-                <div class="user">
+                <a href="settings.html" class="user" style="text-decoration:none; color:inherit;">
                     👤
-                    <span>Student</span>
-                </div>
+                    <span id="userNameDisplay">Student</span>
+                </a>
 
             </div>
 
@@ -127,15 +127,15 @@
 
                     <h2>📋 Today's Task Progress</h2>
 
-                    <span>60%</span>
+                    <span id="taskProgressPercent">0%</span>
 
                 </div>
 
                 <div class="task-number">
 
-                    <strong id="completedTasks">6</strong>
+                    <strong id="completedTasks">0</strong>
 
-                    <span>/ 10 Tasks Completed</span>
+                    <span id="totalTasksDisplay">/ 0 Tasks Completed</span>
 
                 </div>
 
@@ -144,13 +144,13 @@
                     <div
                         class="progress-bar task-bar"
                         id="taskProgress"
-                        style="width: 60%;">
+                        style="width: 0%;">
                     </div>
 
                 </div>
 
                 <p id="remainingTasks">
-                    4 tasks remaining
+                    0 tasks remaining
                 </p>
 
                 <a href="task.html" class="view-link">
@@ -162,7 +162,7 @@
 
             <!-- Subject Progress -->
 
-            <div class="dashboard-card">
+            <div class="dashboard-card" id="subjectProgressCard">
 
                 <div class="card-title">
 
@@ -174,55 +174,8 @@
 
                 </div>
 
-
-                <div class="subject">
-
-                    <div class="subject-info">
-                        <span>DBMS</span>
-                        <span>80%</span>
-                    </div>
-
-                    <div class="progress">
-                        <div
-                            class="progress-bar"
-                            style="width: 80%;">
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="subject">
-
-                    <div class="subject-info">
-                        <span>Operating System</span>
-                        <span>65%</span>
-                    </div>
-
-                    <div class="progress">
-                        <div
-                            class="progress-bar"
-                            style="width: 65%;">
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="subject">
-
-                    <div class="subject-info">
-                        <span>Computer Networks</span>
-                        <span>50%</span>
-                    </div>
-
-                    <div class="progress">
-                        <div
-                            class="progress-bar"
-                            style="width: 50%;">
-                        </div>
-                    </div>
-
+                <div id="subjectProgressList">
+                    <!-- Populated dynamically by dashboard.js -->
                 </div>
 
             </div>
@@ -249,36 +202,9 @@
 
                 </div>
 
-
-                <div class="exam-content">
-
-                    <div>
-
-                        <h3>DBMS</h3>
-
-                        <p>Database Management System</p>
-
-                        <span class="exam-date">
-                            📅 29 September
-                        </span>
-
-                    </div>
-
-
-                    <div class="days-left">
-
-                        <strong>15</strong>
-
-                        <span>Days Left</span>
-
-                    </div>
-
+                <div id="upcomingExamContainer">
+                    <!-- Populated dynamically by dashboard.js -->
                 </div>
-
-
-                <a href="exam-tracker.html" class="view-button">
-                    View Exam
-                </a>
 
             </div>
 
@@ -297,49 +223,8 @@
 
                 </div>
 
-
-                <div class="priority-task">
-
-                    <div class="priority-dot"></div>
-
-                    <div>
-
-                        <h3>Complete DBMS Assignment</h3>
-
-                        <p>Due Today</p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="priority-task">
-
-                    <div class="priority-dot"></div>
-
-                    <div>
-
-                        <h3>OS Unit 3 Revision</h3>
-
-                        <p>Due Tomorrow</p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="priority-task">
-
-                    <div class="priority-dot"></div>
-
-                    <div>
-
-                        <h3>CN Assignment</h3>
-
-                        <p>Due in 2 Days</p>
-
-                    </div>
-
+                <div id="highPriorityContainer">
+                    <!-- Populated dynamically by dashboard.js -->
                 </div>
 
             </div>
@@ -355,17 +240,17 @@
 
             <div class="quick-actions">
 
-                <a href="task.html" class="quick-card">
+                <a href="task.html?action=add" class="quick-card">
                     <span>➕</span>
                     <p>Add Task</p>
                 </a>
 
-                <a href="Notes.html" class="quick-card">
+                <a href="Notes.html?action=new" class="quick-card">
                     <span>📝</span>
                     <p>New Note</p>
                 </a>
 
-                <a href="subjects.html" class="quick-card">
+                <a href="subjects.html?action=add" class="quick-card">
                     <span>📚</span>
                     <p>Add Subject</p>
                 </a>
@@ -384,7 +269,9 @@
 
     <!-- JavaScript -->
 
+    <script src="storage-isolation.js"></script>
     <script src="dashboard.js"></script>
+    <script src="mongo-sync.js"></script>
 
 </body>
 

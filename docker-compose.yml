@@ -9,6 +9,15 @@ services:
       - "8080:80"
     restart: unless-stopped
 
+  mongodb:
+    image: mongo:latest
+    container_name: study-planner-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    restart: unless-stopped
+
   prometheus:
     image: prom/prometheus:latest
     container_name: study-planner-prometheus
@@ -33,3 +42,6 @@ services:
     depends_on:
       - prometheus
     restart: unless-stopped
+
+volumes:
+  mongodb_data:

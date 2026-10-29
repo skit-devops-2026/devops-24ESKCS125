@@ -695,3 +695,28 @@ updateTimerDisplay();
 renderHistory();
 updateStatistics();
 updateStatus("Ready");
+
+
+// ========================================
+// DYNAMIC SUBJECT AUTOCOMPLETE
+// ========================================
+function syncFocusSubjects() {
+    const savedSubjects = JSON.parse(localStorage.getItem("studySubjects")) || [];
+    if (savedSubjects.length > 0 && subjectInput) {
+        let datalist = document.getElementById("focusSubjectList");
+        if (!datalist) {
+            datalist = document.createElement("datalist");
+            datalist.id = "focusSubjectList";
+            document.body.appendChild(datalist);
+        }
+        datalist.innerHTML = savedSubjects.map(s => `<option value="${s}"></option>`).join("");
+        subjectInput.setAttribute("list", "focusSubjectList");
+    }
+}
+syncFocusSubjects();
+
+const urlParams = new URLSearchParams(window.location.search);
+const focusSub = urlParams.get("subject");
+if (focusSub && subjectInput) {
+    subjectInput.value = decodeURIComponent(focusSub);
+}

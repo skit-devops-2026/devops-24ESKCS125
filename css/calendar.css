@@ -1009,3 +1009,55 @@ button {
     }
 
 }
+
+/* Shared StudyPlanner sidebar styling */
+.sidebar {
+    width: 240px !important;
+    min-width: 240px !important;
+    height: 100vh;
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    background: #18213a !important;
+    color: #fff;
+    padding: 25px 15px !important;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+.sidebar .logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #fff !important;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px !important;
+    margin-bottom: 30px !important;
+}
+.sidebar .logo h2 { font-size: 20px; color: #fff; }
+.sidebar .menu { display: flex; flex-direction: column; gap: 0; }
+.sidebar .menu a,
+.sidebar .sidebar-bottom a {
+    display: block;
+    text-decoration: none;
+    color: #d5d9e5 !important;
+    padding: 13px 15px !important;
+    margin-bottom: 7px !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    transition: background .2s ease;
+}
+.sidebar .menu a:hover,
+.sidebar .sidebar-bottom a:hover { background: #293454 !important; color: #fff !important; }
+.sidebar .menu a.active { background: #5865d8 !important; color: #fff !important; }
+.sidebar .sidebar-bottom {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+}
+.main-content { margin-left: 240px !important; width: calc(100% - 240px); }
+@media (max-width: 760px) {
+    .sidebar { width: 190px !important; min-width: 190px !important; padding: 18px 10px !important; }
+    .main-content { margin-left: 190px !important; width: calc(100% - 190px); }
+}

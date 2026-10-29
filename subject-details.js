@@ -2,8 +2,13 @@
    GET SELECTED SUBJECT
 ========================================= */
 
-let selectedSubject =
+const urlParams = new URLSearchParams(window.location.search);
+let selectedSubject = urlParams.get("subject") ||
     localStorage.getItem("selectedSubject");
+
+if (selectedSubject) {
+    localStorage.setItem("selectedSubject", selectedSubject);
+}
 
 
 /* =========================================

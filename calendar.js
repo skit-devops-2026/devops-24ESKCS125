@@ -1144,3 +1144,31 @@ function updateStatistics() {
 // ======================================
 
 renderCalendar();
+
+
+// ======================================
+// DYNAMIC SUBJECTS & DEEP LINKING
+// ======================================
+function syncCalendarSubjects() {
+    const savedSubjects = JSON.parse(localStorage.getItem("studySubjects")) || [];
+    const eventSubjectEl = document.getElementById("eventSubject");
+    if (savedSubjects.length > 0 && eventSubjectEl) {
+        let datalist = document.getElementById("calendarSubjectList");
+        if (!datalist) {
+            datalist = document.createElement("datalist");
+            datalist.id = "calendarSubjectList";
+            document.body.appendChild(datalist);
+        }
+        datalist.innerHTML = savedSubjects.map(s => `<option value="${s}"></option>`).join("");
+        eventSubjectEl.setAttribute("list", "calendarSubjectList");
+    }
+}
+syncCalendarSubjects();
+
+if (window.location.search.includes("action=add")) {
+    setTimeout(function () {
+        if (typeof openAddEventModal === "function") {
+            openAddEventModal();
+        }
+    }, 100);
+}
